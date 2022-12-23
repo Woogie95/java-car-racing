@@ -4,12 +4,12 @@ import java.util.Random;
 
 public class RandomNumber {
 
-    private static final int MAX_RANDOM_NUMBER_VALUE = 10;
+    private static final int MAX_RANDOM_NUMBER = 10;
 
-    private static final Random random = new Random();
+    private static final Random RANDOM = new Random();
 
     public static int createRandomNumber() {
-        return random.nextInt(MAX_RANDOM_NUMBER_VALUE);
+        return RANDOM.nextInt(MAX_RANDOM_NUMBER);
     }
 
 }
