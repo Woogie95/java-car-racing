@@ -6,11 +6,12 @@ public class Output {
         System.out.println("\n" + "실행 결과");
     }
 
-    public static void printCarRacingStatus(int repeatCount, Cars cars) {
-        for (int i = 0; i < repeatCount; i++) {
+    public static void printCarRacingStatus(RacingRepeatCount repeatCount, Cars cars) {
+        for (int i = 0; i < repeatCount.getRepeatCount(); i++) {
             cars = cars.repeatCarRacingGame();
             printHyphenByPositionCount(cars);
         }
+        printResult(cars);
     }
 
     public static void printHyphenByPositionCount(Cars cars) {
@@ -21,6 +22,7 @@ public class Output {
             }
             System.out.println();
         }
+        System.out.println();
     }
 
     public static void printResult(Cars cars) { // 마지막에 출력
@@ -34,9 +36,9 @@ public class Output {
         System.out.println();
     }
 
-    public static void printWinnerNames(Cars cars) { // 마지막에 출력
+    public static void printWinnerNames(Winner winner) { // 마지막에 출력
         StringBuilder winnerNames = new StringBuilder();
-        for (String name : cars.findCarPositionMax().getWinnerNames()) {
+        for (String name : winner.getWinnerNames()) {
             winnerNames.append(name).append(", ");
         }
         winnerNames.delete(winnerNames.length() - 2, winnerNames.length());

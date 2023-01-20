@@ -10,8 +10,8 @@ public class Car {
         this.position = position;
     }
 
-    public void addPosition() {
-        new Car(this.carName, this.position + 1);
+    public Car addPosition() {
+        return new Car(this.carName, this.position + 1);
     }
 
     public String getCarName() {

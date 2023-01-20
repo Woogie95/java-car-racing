@@ -8,7 +8,7 @@ public class Cars {
 
     private static final Random RANDOM = new Random();
 
-    private final List<Car> cars;
+    private List<Car> cars;
 
     public Cars(List<Car> cars) {
         this.cars = cars;
@@ -18,10 +18,11 @@ public class Cars {
         List<Car> cars = new ArrayList<>();
         for (Car car : this.cars) {
             if (isCheckPositionValue()) {
-                car.addPosition();
+                car = car.addPosition();
             }
             cars.add(car);
         }
+        this.cars = cars;
         return new Cars(cars);
     }
 
@@ -29,10 +30,12 @@ public class Cars {
         return RANDOM.nextInt(10) >= 4;
     }
 
-    public Winner findCarPositionMax() { // 반환 타입을 왠만하면 객체로 한다.
+    public Winner findCarPositionMax(RacingRepeatCount repeatCount) { // 반환 타입을 왠만하면 객체로 한다.
         int maxPosition = 0;
-        for (Car car : this.cars) {
-            maxPosition = Math.max(car.getPosition(), maxPosition);
+        for (int i = 0; i < repeatCount.getRepeatCount(); i++) {
+            for (Car car : this.cars) {
+                maxPosition = Math.max(car.getPosition(), maxPosition);
+            }
         }
         List<String> carPositionMaxValueName = findEqualsMaxPosition(maxPosition);
         return new Winner(carPositionMaxValueName);
