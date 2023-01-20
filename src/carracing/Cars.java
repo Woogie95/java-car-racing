@@ -43,6 +43,7 @@ public class Cars {
     private List<String> findEqualsMaxPosition(int maxPosition) {
         List<String> maxPositionNames = new ArrayList<>();
         for (Car car : this.cars) {
+            System.out.println(car.getPosition()+"?????");
             if (car.getPosition() == maxPosition) {
                 maxPositionNames.add(car.getCarName());
             }
