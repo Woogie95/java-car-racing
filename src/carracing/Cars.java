@@ -8,7 +8,7 @@ public class Cars {
 
     private static final Random RANDOM = new Random();
 
-    private List<Car> cars;
+    private final List<Car> cars;
 
     public Cars(List<Car> cars) {
         this.cars = cars;
@@ -22,7 +22,6 @@ public class Cars {
             }
             cars.add(car);
         }
-        this.cars = cars;
         return new Cars(cars);
     }
 

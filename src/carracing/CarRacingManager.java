@@ -6,6 +6,8 @@ public class CarRacingManager {
         Cars cars = CarFactory.createCar(CarFactory.divideCarName(Input.inputRacingCarName()));
         RacingRepeatCount repeatCount = new RacingRepeatCount(Input.inputRepeatCount());
         Output.printPracticeResult();
+
+
         Output.printCarRacingStatus(repeatCount, cars);
         Output.printWinnerNames(cars.findCarPositionMax(repeatCount));
     }
