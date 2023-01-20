@@ -2,10 +2,11 @@ package carracing;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class Cars {
 
-    private static final int MOVABLE_MIN_VALUE = 4;
+    private static final Random RANDOM = new Random();
 
     private final List<Car> cars;
 
@@ -13,40 +14,38 @@ public class Cars {
         this.cars = cars;
     }
 
-    public Cars repeat() { //카를 하나씩 끄집어 포지션을 더해서 새로운 카스를 만들었다
-        List<Car> newCars = new ArrayList<>();
+    public Cars repeatCarRacingGame() {
+        List<Car> cars = new ArrayList<>();
         for (Car car : this.cars) {
-            if (isAddPosition()) {
-                car = car.addPosition();
+            if (isCheckPositionValue()) {
+                car.addPosition();
             }
-            newCars.add(car);
+            cars.add(car);
         }
-        return new Cars(newCars);
+        return new Cars(cars);
     }
 
-    private boolean isAddPosition() {
-        return RandomNumber.createRandomNumber() >= MOVABLE_MIN_VALUE;
+    public boolean isCheckPositionValue() {
+        return RANDOM.nextInt(10) >= 4;
     }
 
-    public Winner findCarPositionMaxValue() {
-        int max = 0;
+    public Winner findCarPositionMax() { // 반환 타입을 왠만하면 객체로 한다.
+        int maxPosition = 0;
         for (Car car : this.cars) {
-            if (car.getPosition() > max) {
-                max = car.getPosition();
-            }
+            maxPosition = Math.max(car.getPosition(), maxPosition);
         }
-        List<String> carPositionMaxValueName = findCarPositionLikeMaxValue(max);
+        List<String> carPositionMaxValueName = findEqualsMaxPosition(maxPosition);
         return new Winner(carPositionMaxValueName);
     }
 
-    private List<String> findCarPositionLikeMaxValue(int max) {
-        List<String> carPositionMaxValueName = new ArrayList<>();
+    private List<String> findEqualsMaxPosition(int maxPosition) {
+        List<String> maxPositionNames = new ArrayList<>();
         for (Car car : this.cars) {
-            if (car.getPosition() == max) {
-                carPositionMaxValueName.add(car.getCarName());
+            if (car.getPosition() == maxPosition) {
+                maxPositionNames.add(car.getCarName());
             }
         }
-        return carPositionMaxValueName;
+        return maxPositionNames;
     }
 
     public List<Car> getCars() {

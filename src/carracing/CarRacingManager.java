@@ -2,19 +2,12 @@ package carracing;
 
 public class CarRacingManager {
 
-    public void startCarRacing() {
-        Cars cars = CarFactory.createCars(
-                CarFactory.divideInputCarNames(
-                        Input.inputCarName()));
-        CarRacingGameCount carRacingGameCount = new CarRacingGameCount(Input.inputRepeatCount());
-        Output.printImplementResult();
-        for (int i = 0; i < carRacingGameCount.getGameCount(); i++) {
-            cars = cars.repeat();
-            Output.printCurrentStatus(cars);
-        }
-        Output.printCurrentStatus(cars);
-        Winner winner = cars.findCarPositionMaxValue();
-        Output.printWinnerName(winner);
+    public void runCarRacing() {
+        Cars cars = CarFactory.createCar(CarFactory.divideCarName(Input.inputRacingCarName()));
+        RacingRepeatCount repeatCount = new RacingRepeatCount(Input.inputRepeatCount());
+        Output.printCarRacingStatus(repeatCount.getRepeatCount(), cars);
+        Output.printPracticeResult();
+        Output.printResult(cars);
+        Output.printWinnerNames(cars);
     }
-
 }

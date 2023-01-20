@@ -4,14 +4,14 @@ import java.util.List;
 
 public class Winner {
 
-    private final List<String> winnersName;
+    private final List<String> winnerNames;
 
-    public Winner(List<String> winnersName) {
-        this.winnersName = winnersName;
+    public Winner(List<String> winnerNames) {
+        this.winnerNames = winnerNames;
     }
 
-    public List<String> getWinnersName() {
-        return winnersName;
+    public List<String> getWinnerNames() {
+        return winnerNames;
     }
 
 }
