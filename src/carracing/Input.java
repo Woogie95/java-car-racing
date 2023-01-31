@@ -13,7 +13,7 @@ public class Input {
 
     public static String inputRepeatCount() {
         System.out.println("시도할 횟수는 몇회인가요?");
-        return SCANNER.next();
+        return SCANNER.nextLine();
     }
 
 }

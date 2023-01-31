@@ -29,26 +29,24 @@ public class Cars {
         return RANDOM.nextInt(10) >= 4;
     }
 
-    public Winner findCarPositionMax(RacingRepeatCount repeatCount) { // 반환 타입을 왠만하면 객체로 한다.
+    public int findCarMaxPosition(RacingRepeatCount repeatCount) {
         int maxPosition = 0;
         for (int i = 0; i < repeatCount.getRepeatCount(); i++) {
             for (Car car : this.cars) {
                 maxPosition = Math.max(car.getPosition(), maxPosition);
             }
         }
-        List<String> carPositionMaxValueName = findEqualsMaxPosition(maxPosition);
-        return new Winner(carPositionMaxValueName);
+        return maxPosition;
     }
 
-    private List<String> findEqualsMaxPosition(int maxPosition) {
-        List<String> maxPositionNames = new ArrayList<>();
+    public List<String> findEqualsMaxPosition(int maxPosition) {
+        List<String> carNames = new ArrayList<>();
         for (Car car : this.cars) {
-            System.out.println(car.getPosition()+"?????");
-            if (car.getPosition() == maxPosition) {
-                maxPositionNames.add(car.getCarName());
+            if (maxPosition == car.getPosition()) {
+                carNames.add(car.getCarName());
             }
         }
-        return maxPositionNames;
+        return carNames;
     }
 
     public List<Car> getCars() {
