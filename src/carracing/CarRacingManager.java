@@ -2,22 +2,22 @@ package carracing;
 
 import java.util.List;
 
+import static carracing.CarFactory.INITIAL_POSITION;
+
 public class CarRacingManager {
 
     public void runCarRacing() {
-        Cars cars = CarFactory.createCars(CarFactory.divideCarName(Input.inputRacingCarName()));
-
+        Car car = new Car(Input.inputRacingCarName());
+        Cars cars = CarFactory.createCars(car.divideCarNameByComma());
         RacingRepeatCount repeatCount = new RacingRepeatCount(Input.inputRepeatCount());
-
         Output.printRunResult();
-
-        Output.printWinnerNames(new Winner(repeatCarRacingRound(repeatCount, cars)));
-
+        Output.printWinnerNames(repeatCarRacingRound(repeatCount, cars));
     }
-    public List<String> repeatCarRacingRound(RacingRepeatCount repeatCount, Cars cars) {
-        int maxPosition = 0;
+
+    private List<String> repeatCarRacingRound(RacingRepeatCount repeatCount, Cars cars) {
+        int maxPosition = INITIAL_POSITION;
         for (int i = 0; i < repeatCount.getRepeatCount(); i++) {
-            cars = cars.repeatCarRacingGame();
+            cars = cars.changeInitialCars();
             Output.printHyphenByPositionCount(cars);
             maxPosition = cars.findCarMaxPosition(repeatCount);
         }
