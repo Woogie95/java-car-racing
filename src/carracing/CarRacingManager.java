@@ -14,7 +14,7 @@ public class CarRacingManager {
         Output.printWinnerNames(repeatCarRacingRound(repeatCount, cars));
     }
 
-    private List<String> repeatCarRacingRound(RacingRepeatCount repeatCount, Cars cars) {
+    private List<Car> repeatCarRacingRound(RacingRepeatCount repeatCount, Cars cars) { // 많은 일을 하고 있다고 느꼈는데 좋지 않은 로직인가 ??
         int maxPosition = INITIAL_POSITION;
         for (int i = 0; i < repeatCount.getRepeatCount(); i++) {
             cars = cars.changeInitialCars();

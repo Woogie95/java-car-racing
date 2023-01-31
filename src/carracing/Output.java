@@ -35,10 +35,10 @@ public class Output {
         System.out.println();
     }
 
-    public static void printWinnerNames(List<String> winnerNames) {
+    public static void printWinnerNames(List<Car> winnerNames) {
         StringBuilder winnerName = new StringBuilder();
-        for (String name : winnerNames) {
-            winnerName.append(name).append(DIVIDE_CRA_NAME_BY_COMMA_BLANK_CRITERIA);
+        for (Car carName : winnerNames) {
+            winnerName.append(carName.getCarName()).append(DIVIDE_CRA_NAME_BY_COMMA_BLANK_CRITERIA);
         }
         winnerName.delete(winnerName.length() - LAST_COMMA_REMOVE, winnerName.length());
         System.out.println(winnerName + "가 최종 우승했습니다.");

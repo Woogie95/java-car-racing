@@ -13,13 +13,12 @@ public class Car {
     private static final String CAR_NAME_CONTAIN_BLANK = " ";
     private static final String SPLIT_CAR_NAME_BY_COMMA = ",";
 
-
     private final String carName;
     private final int position;
 
-    public Car(String carName) {
-        this.carName = carName;
-        this.position = INITIAL_POSITION;
+    public Car(String carName) { // 이름만 받는 생성자를 만들어서 구현해도 문제가 없는가??
+        this.carName = carName; // 이렇게 해버린 이유 : divideCarNameByComma() 메소드가 CarFactory 클래스에 에 있었으나
+        this.position = INITIAL_POSITION; // 검증을 하면서 거기에 있을 필요성을 못느껴서 Car 클래스에 기능을 옮기면면서 만든 생성자 이다.
     }
 
     public Car(String carName, int position) {
@@ -33,6 +32,14 @@ public class Car {
 
     public Car addPosition() {
         return new Car(this.carName, this.position + ADD_POSITION);
+    }
+
+    public int isMaxPosition(int position) {
+        return Math.max(this.position, position);
+    }
+
+    public boolean isMaxPositionEquals(int position) {
+        return this.position == position;
     }
 
     private String validateCarName(String carName) {

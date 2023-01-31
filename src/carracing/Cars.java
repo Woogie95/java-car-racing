@@ -38,20 +38,20 @@ public class Cars {
         int maxPosition = INITIAL_POSITION;
         for (int i = 0; i < repeatCount.getRepeatCount(); i++) {
             for (Car car : this.cars) {
-                maxPosition = Math.max(car.getPosition(), maxPosition);
+                maxPosition = car.isMaxPosition(maxPosition);
             }
         }
         return maxPosition;
     }
 
-    public List<String> findEqualsMaxPosition(int maxPosition) {
-        List<String> carNames = new ArrayList<>();
+    public List<Car> findEqualsMaxPosition(int maxPosition) { // Cars 에서 Car 객체의 게터는 써도 되는가...?
+        List<Car> winnerCarNames = new ArrayList<>(); // 나는 가능하다고 생각을 하였다. 어차피 Cars 에서 관리되고 있는 자동차 들이기 때문이다.
         for (Car car : this.cars) {
-            if (maxPosition == car.getPosition()) {
-                carNames.add(car.getCarName());
+            if (car.isMaxPositionEquals(maxPosition)) {
+                winnerCarNames.add(car);
             }
         }
-        return carNames;
+        return winnerCarNames;
     }
 
     public List<Car> getCars() {
