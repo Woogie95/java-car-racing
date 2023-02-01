@@ -1,9 +1,5 @@
 package carracing;
 
-import java.util.List;
-
-import static carracing.CarFactory.INITIAL_POSITION;
-
 public class Car {
 
     private static final int ADD_POSITION = 1;
