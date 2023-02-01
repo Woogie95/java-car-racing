@@ -8,10 +8,10 @@ import static carracing.CarFactory.INITIAL_POSITION;
 
 public class Cars {
 
+    private static final Random RANDOM = new Random();
+
     private static final int MOVABLE_MIN_VALUE = 4;
     private static final int RANDOM_NUMBER_MAX_VALUE = 10;
-
-    private static final Random RANDOM = new Random();
 
     private final List<Car> cars;
 
@@ -19,10 +19,10 @@ public class Cars {
         this.cars = cars;
     }
 
-    public Cars changeInitialCars() {
+    public Cars saveNewCars() {
         List<Car> cars = new ArrayList<>();
         for (Car car : this.cars) {
-            if (isCheckPositionValue()) {
+            if (isMovable()) {
                 car = car.addPosition();
             }
             cars.add(car);
@@ -30,7 +30,7 @@ public class Cars {
         return new Cars(cars);
     }
 
-    private boolean isCheckPositionValue() {
+    private boolean isMovable() {
         return RANDOM.nextInt(RANDOM_NUMBER_MAX_VALUE) >= MOVABLE_MIN_VALUE;
     }
 
@@ -38,20 +38,24 @@ public class Cars {
         int maxPosition = INITIAL_POSITION;
         for (int i = 0; i < repeatCount.getRepeatCount(); i++) {
             for (Car car : this.cars) {
-                maxPosition = car.isMaxPosition(maxPosition);
+                maxPosition = car.addMaxPosition(maxPosition);
             }
         }
         return maxPosition;
     }
 
-    public List<Car> findEqualsMaxPosition(int maxPosition) { // Cars 에서 Car 객체의 게터는 써도 되는가...?
-        List<Car> winnerCarNames = new ArrayList<>(); // 나는 가능하다고 생각을 하였다. 어차피 Cars 에서 관리되고 있는 자동차 들이기 때문이다.
+    public List<String> addWinnerNames(int maxPosition) {
+        List<String> winnerNames = new ArrayList<>();
+        findEqualsMaxPosition(winnerNames, maxPosition);
+        return winnerNames;
+    }
+
+    private void findEqualsMaxPosition(List<String> winnerNames, int maxPosition) {
         for (Car car : this.cars) {
-            if (car.isMaxPositionEquals(maxPosition)) {
-                winnerCarNames.add(car);
+            if (car.isEqualsMaxPosition(maxPosition)) {
+                winnerNames.add(car.getCarName());
             }
         }
-        return winnerCarNames;
     }
 
     public List<Car> getCars() {

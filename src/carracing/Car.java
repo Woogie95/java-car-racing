@@ -6,40 +6,30 @@ import static carracing.CarFactory.INITIAL_POSITION;
 
 public class Car {
 
-
     private static final int ADD_POSITION = 1;
     private static final int CAR_NAME_MAX_LENGTH = 5;
     private static final String CAR_NAME_EMPTY = "";
     private static final String CAR_NAME_CONTAIN_BLANK = " ";
-    private static final String SPLIT_CAR_NAME_BY_COMMA = ",";
 
     private final String carName;
-    private final int position;
+    private final Position carPosition;
 
-    public Car(String carName) { // 이름만 받는 생성자를 만들어서 구현해도 문제가 없는가??
-        this.carName = carName; // 이렇게 해버린 이유 : divideCarNameByComma() 메소드가 CarFactory 클래스에 에 있었으나
-        this.position = INITIAL_POSITION; // 검증을 하면서 거기에 있을 필요성을 못느껴서 Car 클래스에 기능을 옮기면면서 만든 생성자 이다.
-    }
-
-    public Car(String carName, int position) {
+    public Car(String carName, Position carPosition) {
         this.carName = validateCarName(carName);
-        this.position = position;
-    }
-
-    public List<String> divideCarNameByComma() {
-        return List.of(this.carName.split(SPLIT_CAR_NAME_BY_COMMA));
+        this.carPosition = carPosition;
     }
 
     public Car addPosition() {
-        return new Car(this.carName, this.position + ADD_POSITION);
+        return new Car(this.carName, this.carPosition.movable());
     }
 
-    public int isMaxPosition(int position) {
-        return Math.max(this.position, position);
+
+    public int addMaxPosition(int maxPosition) {
+        return Math.max(this.carPosition.getPosition(), maxPosition);
     }
 
-    public boolean isMaxPositionEquals(int position) {
-        return this.position == position;
+    public boolean isEqualsMaxPosition(int maxPosition) {
+        return this.carPosition.getPosition() == maxPosition;
     }
 
     private String validateCarName(String carName) {
@@ -71,8 +61,8 @@ public class Car {
         return carName;
     }
 
-    public int getPosition() {
-        return position;
+    public Position getCarPosition() {
+        return carPosition;
     }
 
 }

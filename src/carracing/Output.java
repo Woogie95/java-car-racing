@@ -1,7 +1,5 @@
 package carracing;
 
-import java.util.List;
-
 public class Output {
 
     private static final int LAST_COMMA_REMOVE = 2;
@@ -16,7 +14,7 @@ public class Output {
     public static void printHyphenByPositionCount(Cars cars) {
         for (Car car : cars.getCars()) {
             System.out.print(car.getCarName() + DIVIDE_TO_COLON_CRITERIA);
-            for (int j = 0; j < car.getPosition(); j++) {
+            for (int j = 0; j < car.getCarPosition().getPosition(); j++) {
                 System.out.print(CHANGE_POSITION_TO_HYPHEN);
             }
             System.out.println();
@@ -27,7 +25,7 @@ public class Output {
     public static void printCarRacingResult(Cars cars) {
         for (Car car : cars.getCars()) {
             System.out.print(car.getCarName() + DIVIDE_TO_COLON_CRITERIA);
-            for (int j = 0; j < car.getPosition(); j++) {
+            for (int j = 0; j < car.getCarPosition().getPosition(); j++) {
                 System.out.print(CHANGE_POSITION_TO_HYPHEN);
             }
             System.out.println();
@@ -35,10 +33,10 @@ public class Output {
         System.out.println();
     }
 
-    public static void printWinnerNames(List<Car> winnerNames) {
+    public static void printWinnerNames(Winner winnerNames) {
         StringBuilder winnerName = new StringBuilder();
-        for (Car carName : winnerNames) {
-            winnerName.append(carName.getCarName()).append(DIVIDE_CRA_NAME_BY_COMMA_BLANK_CRITERIA);
+        for (String carName : winnerNames.getWinners()) {
+            winnerName.append(carName).append(DIVIDE_CRA_NAME_BY_COMMA_BLANK_CRITERIA);
         }
         winnerName.delete(winnerName.length() - LAST_COMMA_REMOVE, winnerName.length());
         System.out.println(winnerName + "가 최종 우승했습니다.");
